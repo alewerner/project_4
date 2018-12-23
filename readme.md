@@ -61,7 +61,7 @@ GET /stars/hash:[HASH]
 
 ### POST Block Endpoint
 
-# 1.Validate Request and signature message
+#### 1.Validate Request and signature message
 
 Using post method send your wallet Address
 ```
@@ -75,7 +75,7 @@ http://localhost:8000/message-signature/validate
 
 ```
 
-# 2 Post a new Star
+#### 2 Post a new Star
 Post a new block with data payload option to add data to the block body. The block body should support a string of text. The response for the endpoint should provide block object in JSON format.
 
 
@@ -101,7 +101,7 @@ For URL: http://localhost:8000/block
 Configure a GET request using URL path with a block height parameter. The response for the endpoint should provide block object is JSON format.
 
 
-# 1 Get Block by Height
+#### 1 Get Block by Height
 URL
 http://localhost:8000/block/[blockheight]
 
@@ -132,7 +132,7 @@ For URL, http://localhost:8000/block/4
 
 ```
 
-# 2 Get block by Address
+#### 2 Get block by Address
 
 ```
 http://localhost:8000/stars/address:1BkeGFPUC6Ek7xUN6cNFfsfCKMJaWgf7c2
@@ -156,7 +156,7 @@ Resṕonse - all the blocks for that Address
     }
 ```
 
-# 3 Get block by Hash
+#### 3 Get block by Hash
 ```
 http://localhost:8000/stars/hash:cedf417ad2725aa1dcd50d2cea8a37e9b81edd8f05c8a6c2f75c3fe529a23d41
 ```
