@@ -61,7 +61,7 @@ GET /stars/hash:[HASH]
 
 ### POST Block Endpoint
 
-#1.Validate Request and signature message
+#### 1.Validate Request and signature message
 
 Using post method send your wallet Address
 ```
@@ -75,7 +75,7 @@ http://localhost:8000/message-signature/validate
 
 ```
 
-#2 Post a new Star
+#### 2 Post a new Star
 Post a new block with data payload option to add data to the block body. The block body should support a string of text. The response for the endpoint should provide block object in JSON format.
 
 
@@ -96,11 +96,12 @@ For URL: http://localhost:8000/block
 ![Test Image 1](postman_post_example.jpeg)
 
 
-###GET Block Endpoint - Getting the blocks by height, hash or address
+### GET Block Endpoint - Getting the blocks by height, hash or address
 
-GET Block Endpoint
 Configure a GET request using URL path with a block height parameter. The response for the endpoint should provide block object is JSON format.
 
+
+#### 1 Get Block by Height
 URL
 http://localhost:8000/block/[blockheight]
 
@@ -111,7 +112,7 @@ Response
 The response for the endpoint should provide block object is JSON format.
 
 Example GET Response
-For URL, http://localhost:8000/block/0
+For URL, http://localhost:8000/block/4
 
 ```
 {
@@ -130,6 +131,57 @@ For URL, http://localhost:8000/block/0
 }
 
 ```
+
+#### 2 Get block by Address
+
+```
+http://localhost:8000/stars/address:1BkeGFPUC6Ek7xUN6cNFfsfCKMJaWgf7c2
+```
+Resṕonse - all the blocks for that Address
+```
+{
+        "hash": "cedf417ad2725aa1dcd50d2cea8a37e9b81edd8f05c8a6c2f75c3fe529a23d41",
+        "height": 4,
+        "body": {
+            "address": "1BkeGFPUC6Ek7xUN6cNFfsfCKMJaWgf7c2",
+            "star": {
+                "dec": "-48º 25' 30.0",
+                "ra": "15h 49m 6.0s ",
+                "story": "53636f727069757320436f6e7374656c6c6174696f6e202d20666f756e64207573696e67207777772e676f6f676c652e636f6d2f736b79",
+                "storyDecoded": "Scorpius Constellation - found using www.google.com/sky"
+            }
+        },
+        "time": "1545603451",
+        "previousBlockHash": "3fa277e4c194ab0b49fbd125e04351974e70b8285af96340dbed640a1579aa97"
+    }
+```
+
+#### 3 Get block by Hash
+```
+http://localhost:8000/stars/hash:cedf417ad2725aa1dcd50d2cea8a37e9b81edd8f05c8a6c2f75c3fe529a23d41
+```
+
+Will return the block who contains that hash
+
+```
+{
+    "hash": "cedf417ad2725aa1dcd50d2cea8a37e9b81edd8f05c8a6c2f75c3fe529a23d41",
+    "height": 4,
+    "body": {
+        "address": "1BkeGFPUC6Ek7xUN6cNFfsfCKMJaWgf7c2",
+        "star": {
+            "dec": "-48º 25' 30.0",
+            "ra": "15h 49m 6.0s ",
+            "story": "53636f727069757320436f6e7374656c6c6174696f6e202d20666f756e64207573696e67207777772e676f6f676c652e636f6d2f736b79",
+            "storyDecoded": "Scorpius Constellation - found using www.google.com/sky"
+        }
+    },
+    "time": "1545603451",
+    "previousBlockHash": "3fa277e4c194ab0b49fbd125e04351974e70b8285af96340dbed640a1579aa97"
+}
+```
+
+
 
 
 ## Built With - Sources I research for this project:
