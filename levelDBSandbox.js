@@ -19,20 +19,41 @@ addBlockToLevelDB = function(key,value){
   })
 }
 
-getBlockHeightFromLevelDB = function(){
-  return new Promise((resolve, reject) =>{
-    let height = -1
-    bd.createReadStream().on('data', (data) =>{
-      height++
-    }).on('error', (error) => {
-      reject(error)
-    }).on('close', () => {
-      resolve(height)
+getBlockByHeightFromLevelDB = function(height){
+
+  return new Promise((resolve, reject) => {
+    bd.get( height, (error, value) =>{
+      if (error){
+        reject(error)
+      }
+
+      value = JSON.parse(value)
+
+      if (parseInt(height) > 0) {
+        value.body.star.storyDecoded = new Buffer(value.body.star.story, 'hex').toString();
+      }
+      resolve(value)
     })
   })
 }
 
-getBlockFromLevelDB = function( key ) {
+getBlockHeightFromLevelDB = function(){
+
+  return new Promise((resolve, reject) =>{
+      let height = -1;
+
+      bd.createReadStream().on('data', (data) =>{
+        height++;
+      }).on('error', (error) => {
+        reject(error)
+      }).on('close', () => {
+        resolve(height)
+      });
+    });
+}
+
+getBlockFromLevelDB = function(key) {
+
   return new Promise((resolve, reject) => {
     bd.get( key, (error, value) =>{
       if (error){
@@ -63,8 +84,6 @@ getBlocksByAddress = function(address) {
   });
 }
 
-
-
 getBlockByHash = function(hash){
   let block;
 
@@ -94,6 +113,7 @@ getBlockByHash = function(hash){
 module.exports ={
   getBlockFromLevelDB,
   getBlockHeightFromLevelDB,
+  getBlockByHeightFromLevelDB,
   addBlockToLevelDB,
   getBlockByHash,
   getBlocksByAddress

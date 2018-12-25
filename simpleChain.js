@@ -31,6 +31,10 @@ class Blockchain{
     return await leveldb.getBlockHeightFromLevelDB();
   }
 
+async getBlockByHeight(height){
+  return await leveldb.getBlockByHeightFromLevelDB(height);
+}
+
   async getBlockByHash(hash){
     return await leveldb.getBlockByHash(hash);
   }

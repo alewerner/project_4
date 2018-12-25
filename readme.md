@@ -59,7 +59,7 @@ GET /stars/hash:[HASH]
 ```    
 
 
-###POST Block Endpoint
+### POST Block Endpoint
 
 #1.Validate Request and signature message
 

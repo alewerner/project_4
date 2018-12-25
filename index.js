@@ -56,8 +56,13 @@ app.get('/', (req, res) => res.status(404).json({
 
 app.get('/block/:height', async (req, res) =>{
   try{
-    const response = await newChain.getBlock(req.params.height);
+    console.log('height'+req.params.height) ;
+
+    const response = await newChain.getBlockByHeight(req.params.height);
+    console.log(response);
     res.send(response);
+
+
   }catch(error){
     res.status(404).json({
       "status": 404,
@@ -97,6 +102,8 @@ app.post('/block', [validateStarRequest] ,  async(req, res) => {
   await newChain.addBlock( new Block(body) );
   const height = await newChain.getBlockHeight();
   const response = await newChain.getBlock(height);
+
+  starValidation.invalidate(address);
 
   res.status(201).send(response);
 
